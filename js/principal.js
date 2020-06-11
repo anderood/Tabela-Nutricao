@@ -23,12 +23,14 @@ for(var i = 0; i < pacientes.length; i++){
         console.log("Peso Invalido!");
         tdPeso.textContent = "Peso Inválido!"
         pesoEhValido = false;
+        paciente.classList.add("paciente-invalido");
     }
     
     if( altura <= 0 || altura >= 3){
         console.log("Altura Invalida!");
         tdAltura.textContent = "Altura Inválido!"
         alturaEhValida = false;
+        paciente.classList.add("paciente-invalido");
     }
     
     if(alturaEhValida && pesoEhValido){
@@ -38,3 +40,53 @@ for(var i = 0; i < pacientes.length; i++){
         tdImc.textContent = "Altura e/ou peso Inválidos!"
     }
 }
+
+
+var botaoAdicionar = document.querySelector("#adicionar-paciente");
+
+//Fica ouvindo o Evento do Botao
+botaoAdicionar.addEventListener('click', function(event){
+
+    //Informa ao evento para nao enviar os dados
+    event.preventDefault();
+
+    //Seleciona o Form
+    var form = document.querySelector("#form-adiciona");
+
+    //Atribui as variaveis ao form
+    var nome = form.nome.value;
+    var peso = form.peso.value;
+    var altura = form.altura.value;
+    var gordura = form.gordura.value;
+
+    //cria um novo Elemento Tr
+    var pacienteTr = document.createElement("tr");
+
+    //Cria um novos elemento tds
+    var nomeTd = document.createElement("td");
+    var pesoTd = document.createElement("td");
+    var alturaTd = document.createElement("td");
+    var gorduraTd = document.createElement("td");
+    var imcTd = document.createElement("td");
+
+    //Adiciona valores aos Tds
+    nomeTd.textContent = nome;
+    pesoTd.textContent = peso;
+    alturaTd.textContent = altura;
+    gorduraTd.textContent = gordura;
+
+    //Envia pra dentro do pacienteTr todos os valores
+    pacienteTr.appendChild(nomeTd);
+    pacienteTr.appendChild(pesoTd);
+    pacienteTr.appendChild(alturaTd);
+    pacienteTr.appendChild(gorduraTd);
+
+    //Seleciona a Tabela
+    var tabela = document.querySelector("#tabela-pacientes");
+
+    //Envia os dados de PacienteTr pra dentro da tabela
+    tabela.appendChild(pacienteTr);
+
+    console.log(tabela);
+
+});
