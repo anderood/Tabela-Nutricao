@@ -8,58 +8,15 @@ botaoAdicionar.addEventListener('click', function(event){
 
     //Seleciona o Form
     var form = document.querySelector("#form-adiciona");
-    
-
-    //## Refatoramento de Codigo ##
-    // //Extrai as variaveis do form
-    // var nome = form.nome.value;
-    // var peso = form.peso.value;
-    // var altura = form.altura.value;
-    // var gordura = form.gordura.value;
-
     var paciente = obtemPacienteDoForm(form);
-    
-
-    var pacienteTr = montaTr(paciente);
-    
     var erros = validaPaciente(paciente);
 
     if(erros.length > 0){
         exibeMsgdeErro(erros)
         return
-        
     }
-    //## Refatoramento de Codigo ##
-    //cria um novo Elemento Tr
-    // var pacienteTr = document.createElement("tr");
 
-    // //Cria novos elementos tds
-    // var nomeTd = document.createElement("td");
-    // var pesoTd = document.createElement("td");
-    // var alturaTd = document.createElement("td");
-    // var gorduraTd = document.createElement("td");
-    // var imcTd = document.createElement("td");
-
-    // //Adiciona valores aos Tds
-    // nomeTd.textContent = nome;
-    // pesoTd.textContent = peso;
-    // alturaTd.textContent = altura;
-    // gorduraTd.textContent = gordura;
-    // imcTd.textContent = calculaImc(peso, altura);
-
-    // //Envia pra dentro do pacienteTr todos os valores
-    // pacienteTr.appendChild(nomeTd);
-    // pacienteTr.appendChild(pesoTd);
-    // pacienteTr.appendChild(alturaTd);
-    // pacienteTr.appendChild(gorduraTd);
-    // pacienteTr.appendChild(imcTd);
-
-    //Seleciona a Tabela
-    var tabela = document.querySelector("#tabela-pacientes");
-
-    //Envia os dados de PacienteTr pra dentro da tabela
-    tabela.appendChild(pacienteTr);
-
+    adicionaPacienteNaTabela(paciente);
     form.reset();
     var mensagensErro = document.querySelector("#mensagens-erro");
     mensagensErro.innerHTML = '';
@@ -168,4 +125,13 @@ function exibeMsgdeErro(erros){
             li.textContent = erro;
             ul.appendChild(li);
         });
+}
+
+function adicionaPacienteNaTabela(paciente){
+    var pacienteTr = montaTr(paciente);
+    //Seleciona a Tabela
+    var tabela = document.querySelector("#tabela-pacientes");
+
+    //Envia os dados de PacienteTr pra dentro da tabela
+    tabela.appendChild(pacienteTr);
 }
