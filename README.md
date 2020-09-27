@@ -6,4 +6,4 @@ Ter boa praticas e realizar busca de dados de um servidor, usando AJAX.
 
 ##### Pontos importantes de meu aprendizado:
 * Boas Praticas de Organização de Codigo
-* Realizar um requisição AJAX em outro servidor
+* Realizar uma requisição AJAX.
